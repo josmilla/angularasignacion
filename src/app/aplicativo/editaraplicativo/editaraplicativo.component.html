@@ -1,0 +1,66 @@
+<div class="container">
+    <br />
+     
+
+    <div class="row"  >
+      <div class="col">
+        <h3>Actualizar Aplicativo </h3>
+      </div>
+      <div class="col text-right">
+        <a href="#" routerLink="/aplicativo" class="btn btn-secondary btn-sm">Regresar</a>
+      </div>
+    </div > 
+    <br />
+<form [formGroup]="editForm" (ngSubmit)="onSubmit(editForm)" #formDir="ngForm" novalidate>
+    <div class="form-row">  
+        <div class="col-12">
+        
+ 
+    <div class="form-group"> <label class=" control-label col-md-12">Codigo Aplicativo</label>  
+        <div class="col-12"> <input class="form-control" readonly="true" type="text" formControlName="codAplicativo" id="codAplicativo"> </div>  
+    </div>  
+    <div class="form-group"> <label class=" control-label col-md-12">Nombre Aplicativo</label>  
+    <div class="col-12"> <input class="form-control" type="text" formControlName="nombreAplicativo" id="nombreAplicativo"> </div>   </div> 
+ 
+    <div class="form-group"> <label class=" control-label col-md-12">Bidding Blockaplicativo</label>  
+    <div class="col-12"> <input class="form-control" type="text" formControlName="biddingblockAplicativo" id="biddingblockAplicativo"> </div>   </div> 
+
+    <div class="form-group"> <label class=" control-label col-md-12">Estado Aplicativo</label>  
+    <div class="col-12"> <input class="form-control" type="text" formControlName="estadoAplicativo" id="estadoAplicativo"> </div>   </div> 
+
+
+<div class="form-group"> <label class=" control-label col-md-12">Fecha de Registro</label>  
+    <div class="col-12"> 
+        <input  class="form-control" type="date"  [(ngModel)]="mi_fecha"  id="mi_fecha"  readonly   formControlName="fechaRegistro"  > </div>  </div> 
+<div class="form-group"> <label class=" control-label col-md-12">Usuario Registro</label>  
+    <div class="col-12"> <input class="form-control" type="text" formControlName="usuarioRegistro" readonly="true"> </div>  </div> 
+<div class="form-group"> <label class=" control-label col-md-12">Fecha Modificacion</label>  
+    <div class="col-12"> 
+         {{ mi_fecha}}
+        <input class="form-control"  value="mi_fecha"  [(ngModel)]="mi_fecha"   id="mi_fecha"  type="date" formControlName="fechaModifi "  > </div>  
+
+
+</div> 
+<div class="form-group"> <label class=" control-label col-md-12">Usuario Modificacion</label>  
+    <div class="col-12" > <input class="form-control" type="text" formControlName="usuarioModificacion"> </div>   </div>   
+    <br>
+    <div class="form-group">
+        <label style="width:150px ;">Estado de Registro</label>
+        <label style="width:50px ;">
+            <input    type="radio" name="estado" formControlName="estado" ng-reflect-value="true"   [value]="true" />Si
+        </label>
+        <label>
+            <input   type="radio" name="estado" formControlName="estado" [value]="false" />No
+        </label>
+    </div>
+    
+    </div>
+</div>
+    <br>
+ <button class="btn btn-primary" type="submit" [disabled]="!editForm.valid" >Actualizar Aplicativo</button>
+ 
+    
+ </form>  
+
+</div>
+ 
