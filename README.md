@@ -1,10 +1,6 @@
-# Angular JWT Demo
+# Angular JWT -NET-ANGULAR
 
-This is a regular Angular project, which is created by Angular CLI. This project demonstrates the JWT communications with a backend web API project.
-
-In my demo, this project will be served by NGINX using Docker Compose. In order to let NGINX have access to the compiled Angular web app, please run command `npm run deploy:nginx` to save the output files to a `wwwroot` folder in the `nginx` directory.
-
-Alternatively, you can deploy the Angular web app to a `wwwroot` folder in the ASP.NET Core web app and use Kestrel to serve the Angular app as a SPA.
+ PRUEBA ANGULAR 
 
 ## API BaseURL
 
