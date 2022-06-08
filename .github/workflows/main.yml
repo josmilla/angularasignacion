@@ -23,7 +23,7 @@ jobs:
 
     - name: Deploy
       if: success()
-      uses: josmilla/angularasignacion@v3
+      uses: josmilla/angularasignacion@v1
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: dist/angularasignacion
