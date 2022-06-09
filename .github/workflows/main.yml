@@ -1,9 +1,9 @@
 name: GitHub Pages
-
 on:
   push:
-    branches:
-    - main
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -18,17 +18,21 @@ jobs:
 
     - name: Install dependencies
       run: npm install
+    - name: npm install, build, and test
+      run: |
+        npm ci
+        npm run build  build:prod
+        npm start & npx wait-on http://localhost:3000
+      env:
+        CI: true
+    #- name: Build
+    #  run: npm run build:prod
 
-    - name: Run tests
-      run: npm run test:headless
-
-    - name: Build
-      run: npm run build:prod
-
-    - name: Deploy
-      if: success()
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: dist/angularasignacion
-        enable_jekyll: true
+    #- name: Deploy
+    #  if: success()
+    #  uses: solybum/hexo-deploy@master
+    #  env:
+    #    PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #    PUBLISH_REPOSITORY: josmilla/josmilla.github.io # The repository the action should deploy to.
+    #    BRANCH: master  # The branch the action should deploy to.
+    #    PUBLISH_DIR: ./public # The folder the action should deploy.
