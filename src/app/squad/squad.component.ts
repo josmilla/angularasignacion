@@ -21,7 +21,7 @@ export class SquadComponent implements OnInit {
   tableSize: number = 12;
   tableSizes: any = [3, 6, 9, 12];
  // AsignacionSquad  = [] as ListaSquad[];
-  AsignacionTribu = [] as ListaTribucoe[];
+  //AsignacionTribu = [] as ListaTribucoe[];
   items = { ListaSquad: [], ListaTribucoe: [] };
   AsignacionSquad: ListaSquad[] = [];
   //AsignacionSquad: any;

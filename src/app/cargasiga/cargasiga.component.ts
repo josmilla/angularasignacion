@@ -54,6 +54,7 @@ export class CargasigaComponent implements OnInit {
   sumaid:any;
   Asignaciontotal:any;
   totalsuma:any
+  usuario:any;
   //  _cached: any; 
   //  sections$: any;
   page: number = 1;
@@ -75,9 +76,9 @@ export class CargasigaComponent implements OnInit {
 
   ngOnInit(): void {
    
-    
+     
+    this.usuario = localStorage.getItem('username') ?? '';
   
-    //this.getusersiga()  
     this.listarsiga()
     
    
@@ -94,6 +95,21 @@ export class CargasigaComponent implements OnInit {
     });
   
   }
+
+
+  listarsigachapter(idchapter:any)  {
+   
+   
+
+    this.api.getAllCargaSiga().subscribe(datacarga => {
+      this.AsignacionCarga = this.AsignacionCarga.filter(item => item.idCarga !== idchapter);
+     // this.AsignacionCarga = datacarga;
+    //   this.suma(this.AsignacionCarga)
+       
+    });
+  
+  }
+
 
   listarasignacion()  {
    

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../core';
 import { ListaCargaI } from '../core/models/listaSiga.interface';
 import { ApiService } from '../core/services/api.service'
+import { Router, ActivatedRoute } from '@angular/router';
  
  
 
@@ -40,10 +41,15 @@ export class HomeComponent implements OnInit {
   
   accessToken = '';
   refreshToken = '';
-   
+  usuario:any;
+  user$:any;
  
   
-  constructor(public authService: AuthService, private api:ApiService) {}
+  constructor(public authService: AuthService, private api:ApiService, private route: ActivatedRoute,) {
+    debugger
+    this.user$ = this.authService.user$;
+
+  }
 
   
   
@@ -51,14 +57,26 @@ export class HomeComponent implements OnInit {
      
  
     /*/*/
+     
     this.accessToken = localStorage.getItem('access_token') ?? '';
     this.refreshToken = localStorage.getItem('refresh_token') ?? '';
+     this.usuario = "0U21627";
     
-    this.listarsiga();
-    this.listarsaplicativo();
-    this.listarstribu();
-    this.listarsquad();
-    this.listarsrol();
+
+     if (this.usuario =="0U21627"){
+      
+     this.listarsigaidchapter(this.usuario)
+     debugger
+     } else { this.listarsiga(); }
+
+      this.listarsiga();
+      this.listarsaplicativo();
+      this.listarstribu();
+      this.listarsquad();
+      this.listarsrol();
+
+     
+   
     this.mi_fecha= new Date().getFullYear()+'-'+("0"+(new Date().getMonth()+1)).slice(-2)+'-'+("0"+new Date().getDate()).slice(-2)
 
 }
@@ -67,6 +85,19 @@ listarsiga()  {
   this.api.getAllCargaSiga().subscribe((datacarga:any) => {
     this.AsignacionCarga = datacarga;
     this.tcarga=datacarga.length;
+       
+  });
+
+}
+
+listarsigaidchapter(idchapter:any)  {
+   
+
+  this.api.getAllCargaSiga().subscribe((datacarga:any) => {
+  this.AsignacionCarga = this.AsignacionCarga.filter((item:any) => item.matriculaChapter ==idchapter);
+  debugger
+   // this.AsignacionCarga = datacarga;
+  this.tcarga=datacarga.length;
        
   });
 
