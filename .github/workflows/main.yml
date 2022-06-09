@@ -18,15 +18,21 @@ jobs:
 
     - name: Install dependencies
       run: npm install
-
-    - name: Build
-      run: npm run build:prod
-
-    - name: Deploy
-      if: success()
-      uses: solybum/hexo-deploy@master
+    - name: npm install, build, and test
+      run: |
+        npm ci
+        npm run build --if-present
+        npm start & npx wait-on http://localhost:3000
       env:
-        PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        PUBLISH_REPOSITORY: josmilla/josmilla.github.io # The repository the action should deploy to.
-        BRANCH: master  # The branch the action should deploy to.
-        PUBLISH_DIR: ./public # The folder the action should deploy.
+        CI: true
+    #- name: Build
+    #  run: npm run build:prod
+
+    #- name: Deploy
+    #  if: success()
+    #  uses: solybum/hexo-deploy@master
+    #  env:
+    #    PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #    PUBLISH_REPOSITORY: josmilla/josmilla.github.io # The repository the action should deploy to.
+    #    BRANCH: master  # The branch the action should deploy to.
+    #    PUBLISH_DIR: ./public # The folder the action should deploy.
