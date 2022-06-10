@@ -110,6 +110,12 @@ export class ApiService   {
         );
     }
 
+    getchaptersiga(id:any): Observable<ListaCargaI> {
+      return this.http.get<ListaCargaI>(this.apiUrl + 'api/cargasiga/chapter/' + id)
+        .pipe(
+          catchError(this.errorHandler)
+        );
+    }
 
     getmatriculasuma(id:any): Observable<ListaAsignacionI> {
       return this.http.get<ListaAsignacionI>(this.apiUrl + 'asignacion/' + id)

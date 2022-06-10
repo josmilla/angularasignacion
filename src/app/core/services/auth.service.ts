@@ -138,6 +138,10 @@ export class AuthService implements OnDestroy {
       .subscribe();
   }
 
+  getusuariorol(): Observable<LoginResult> {
+    return this.http.get<LoginResult>(this.apiUrl + '/user');
+  }
+
   private stopTokenTimer() {
     this.timer?.unsubscribe();
   }

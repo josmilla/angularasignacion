@@ -77,10 +77,10 @@ export class CargasigaComponent implements OnInit {
   ngOnInit(): void {
    
      
-    this.usuario = localStorage.getItem('username') ?? '';
+     
   
-    this.listarsiga()
-    
+    //this.listarsiga()
+    this.iduser()
    
   }
 
@@ -90,13 +90,27 @@ export class CargasigaComponent implements OnInit {
 
     this.api.getAllCargaSiga().subscribe(datacarga => {
       this.AsignacionCarga = datacarga;
-    //   this.suma(this.AsignacionCarga)
-       
+     
     });
   
   }
 
+  iduser(){
 
+    this.authService.getusuariorol().subscribe((datauser:any) => {
+       this.usuario = datauser;
+    // this.listarsigachapter(this.usuario.username) 
+     this.api.getchaptersiga(this.usuario.username).subscribe((datacarga:any) => {
+      this.AsignacionCarga = datacarga;
+      debugger
+      if (this.AsignacionCarga.length==0)
+      {
+        this.listarsiga();
+      }    
+     });  
+       
+    });
+  }
   listarsigachapter(idchapter:any)  {
    
    
@@ -108,6 +122,10 @@ export class CargasigaComponent implements OnInit {
        
     });
   
+    
+
+
+
   }
 
 

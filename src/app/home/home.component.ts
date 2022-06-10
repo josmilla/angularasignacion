@@ -3,7 +3,8 @@ import { AuthService } from '../core';
 import { ListaCargaI } from '../core/models/listaSiga.interface';
 import { ApiService } from '../core/services/api.service'
 import { Router, ActivatedRoute } from '@angular/router';
- 
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
  
 
 import * as Chartist from 'chartist';
@@ -27,11 +28,13 @@ export class HomeComponent implements OnInit {
   /*  //*/
   
   AsignacionCarga:any;
+  AsignacionCargaAll:any;
   AsignacionSquad:any;
   AsignacionRol:any;
   AsignacionTribu:any;
   AsignacionAplicativo:any;
   tcarga:any
+  tcargaall:any;
   tsquad:any;
   trol:any;
   ttribu:any;
@@ -42,12 +45,11 @@ export class HomeComponent implements OnInit {
   accessToken = '';
   refreshToken = '';
   usuario:any;
-  user$:any;
- 
+  estadobusqueda:any;
   
-  constructor(public authService: AuthService, private api:ApiService, private route: ActivatedRoute,) {
-    debugger
-    this.user$ = this.authService.user$;
+
+  constructor(public authService: AuthService, private api:ApiService, private route: ActivatedRoute,  ) {
+    
 
   }
 
@@ -55,24 +57,16 @@ export class HomeComponent implements OnInit {
   
   ngOnInit(): void {
      
- 
-    /*/*/
+  
      
-    this.accessToken = localStorage.getItem('access_token') ?? '';
-    this.refreshToken = localStorage.getItem('refresh_token') ?? '';
-     this.usuario = "0U21627";
+    this.iduser();
     
-
-     if (this.usuario =="0U21627"){
-      
-     this.listarsigaidchapter(this.usuario)
-     debugger
-     } else { this.listarsiga(); }
-
-      this.listarsiga();
+   
+  
       this.listarsaplicativo();
       this.listarstribu();
       this.listarsquad();
+    
       this.listarsrol();
 
      
@@ -80,27 +74,53 @@ export class HomeComponent implements OnInit {
     this.mi_fecha= new Date().getFullYear()+'-'+("0"+(new Date().getMonth()+1)).slice(-2)+'-'+("0"+new Date().getDate()).slice(-2)
 
 }
-listarsiga()  {
-   
-  this.api.getAllCargaSiga().subscribe((datacarga:any) => {
-    this.AsignacionCarga = datacarga;
-    this.tcarga=datacarga.length;
-       
-  });
+// listarsiga()  {
+//    debugger
+//   this.api.getAllCargaSiga().subscribe((todos:any) => {
+//     this.AsignacionCarga = todos;
+//     this.tcarga=todos.length;
+//     
+//   });
 
+// }
+
+iduser(){
+
+  this.authService.getusuariorol().subscribe((datauser:any) => {
+     this.usuario = datauser;
+     this.listarsigaidchapter(this.usuario.username) 
+     
+     
+  });
+ 
+ //debugger
 }
 
-listarsigaidchapter(idchapter:any)  {
-   
-
-  this.api.getAllCargaSiga().subscribe((datacarga:any) => {
-  this.AsignacionCarga = this.AsignacionCarga.filter((item:any) => item.matriculaChapter ==idchapter);
-  debugger
-   // this.AsignacionCarga = datacarga;
-  this.tcarga=datacarga.length;
+listarsigaidchapter(id:any)  {
+ // this.AsignacionCarga = [];
+debugger
+  this.api.getchaptersiga(id).subscribe((datacarga:any) => {
+   this.AsignacionCarga = datacarga;
+  
+   this.tcarga=datacarga.length;
+   if (this.tcarga>0) { 
+    debugger 
+    this.estadobusqueda=true
+    
+  } else { this.estadobusqueda=false
+    this.AsignacionCarga = [];
+    }
        
   });
-
+ 
+  if (!this.estadobusqueda == true){
+   
+    this.api.getAllCargaSiga().subscribe((todos:any) => {
+      this.AsignacionCarga = todos;
+      this.tcargaall=todos.length;
+      });
+    }
+  
 }
 
 listarsquad()  {

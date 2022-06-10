@@ -25,14 +25,35 @@
                     </div>
                     <p class="card-category">Asignación -  {{  mi_fecha | date: 'dd/MM/yyyy'}}</p>
                     
-                    <h3 class="card-title">
+                    <div *ngIf="this.tcarga==0" class="colorblue">  
+                                         
+                        <h3 class="card-title">
                         
-                             {{ this.tcarga}}
+                             {{ this.tcargaall }}
 
+                      
                        
-                        
-                        <small>Registros</small>
-                    </h3>
+                       <small>Registros</small>
+                   </h3>
+                     
+                      
+                   </div>
+
+                   <div *ngIf="this.tcarga>0" class="colorblue">  
+                                         
+                    <h3 class="card-title">
+                    
+                        {{ this.tcarga }}  
+
+                  
+                   
+                   <small>Registros</small>
+               </h3>
+                 
+                  
+               </div>
+
+                   
                 </div>
                 <div class="card-footer">
                     <div class="stats">
