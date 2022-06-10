@@ -74,54 +74,60 @@ export class HomeComponent implements OnInit {
     this.mi_fecha= new Date().getFullYear()+'-'+("0"+(new Date().getMonth()+1)).slice(-2)+'-'+("0"+new Date().getDate()).slice(-2)
 
 }
-// listarsiga()  {
-//    debugger
-//   this.api.getAllCargaSiga().subscribe((todos:any) => {
-//     this.AsignacionCarga = todos;
-//     this.tcarga=todos.length;
+ listarsiga()  {
+     debugger
+  this.api.getAllCargaSiga().subscribe((todos:any) => {
+     this.AsignacionCarga = todos;
+     this.tcarga=todos.length;
 //     
-//   });
+   });
 
-// }
+  }
 
 iduser(){
 
   this.authService.getusuariorol().subscribe((datauser:any) => {
-     this.usuario = datauser;
-     this.listarsigaidchapter(this.usuario.username) 
-     
-     
-  });
- 
- //debugger
+    this.usuario = datauser;
+ // this.listarsigachapter(this.usuario.username) 
+  this.api.getchaptersiga(this.usuario.username).subscribe((datacarga:any) => {
+   this.AsignacionCarga = datacarga;
+   this.tcarga=datacarga.length;
+   debugger
+   if (this.AsignacionCarga.length==0)
+   {
+     this.listarsiga();
+   }    
+  });  
+    
+ });
 }
 
-listarsigaidchapter(id:any)  {
- // this.AsignacionCarga = [];
-debugger
-  this.api.getchaptersiga(id).subscribe((datacarga:any) => {
-   this.AsignacionCarga = datacarga;
+// listarsigaidchapter(id:any)  {
+//  // this.AsignacionCarga = [];
+// debugger
+//   this.api.getchaptersiga(id).subscribe((datacarga:any) => {
+//    this.AsignacionCarga = datacarga;
   
-   this.tcarga=datacarga.length;
-   if (this.tcarga>0) { 
-    debugger 
-    this.estadobusqueda=true
+//    this.tcarga=datacarga.length;
+//    if (this.tcarga>0) { 
+//     debugger 
+//     this.estadobusqueda=true
     
-  } else { this.estadobusqueda=false
-    this.AsignacionCarga = [];
-    }
+//   } else { this.estadobusqueda=false
+//     this.AsignacionCarga = [];
+//     }
        
-  });
+//   });
  
-  if (!this.estadobusqueda == true){
+//   if (!this.estadobusqueda == true){
    
-    this.api.getAllCargaSiga().subscribe((todos:any) => {
-      this.AsignacionCarga = todos;
-      this.tcargaall=todos.length;
-      });
-    }
+//     this.api.getAllCargaSiga().subscribe((todos:any) => {
+//       this.AsignacionCarga = todos;
+//       this.tcargaall=todos.length;
+//       });
+//     }
   
-}
+// }
 
 listarsquad()  {
    

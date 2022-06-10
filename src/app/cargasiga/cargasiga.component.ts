@@ -111,22 +111,22 @@ export class CargasigaComponent implements OnInit {
        
     });
   }
-  listarsigachapter(idchapter:any)  {
+  // listarsigachapter(idchapter:any)  {
    
    
 
-    this.api.getAllCargaSiga().subscribe(datacarga => {
-      this.AsignacionCarga = this.AsignacionCarga.filter(item => item.idCarga !== idchapter);
-     // this.AsignacionCarga = datacarga;
-    //   this.suma(this.AsignacionCarga)
+  //   this.api.getAllCargaSiga().subscribe(datacarga => {
+  //     this.AsignacionCarga = this.AsignacionCarga.filter(item => item.idCarga !== idchapter);
+  //    // this.AsignacionCarga = datacarga;
+  //   //   this.suma(this.AsignacionCarga)
        
-    });
+  //   });
   
     
 
 
 
-  }
+  // }
 
 
   listarasignacion()  {
