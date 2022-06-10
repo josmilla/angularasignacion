@@ -41,7 +41,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 import { AgregartribuComponent } from './tribucoe/agregartribu/agregartribu.component';
 import { EditartribuComponent } from './tribucoe/editartribu/editartribu.component';
- 
+import { environment } from 'src/environments/environment';
+import { LoggerModule } from 'ngx-logger';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,7 @@ import { EditartribuComponent } from './tribucoe/editartribu/editartribu.compone
     EditaraplicativoComponent,
     AgregartribuComponent,
     EditartribuComponent,
-  
+    
     
   ],
   imports: [
@@ -87,6 +88,12 @@ import { EditartribuComponent } from './tribucoe/editartribu/editartribu.compone
     NgChartsModule,
     Ng2SearchPipeModule,
     BrowserAnimationsModule,
+    LoggerModule.forRoot({
+      serverLoggingUrl: `${environment.apiUrl}api/logs`,
+      level:environment.logLevel,
+      serverLogLevel: environment.serverLogLevel,
+      disableConsoleLogging: false
+    })
   ],
   providers: [],
   bootstrap: [AppComponent],
