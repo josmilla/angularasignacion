@@ -26,7 +26,7 @@
 <div class="form-group"> <label class=" control-label col-md-12">Fecha de Registro</label>  
     <div class="col-12"> 
         <input [ngModel]="rol.fechaRegistro | date:'yyyy-MM-dd' : 'UTC'" class="form-control" readonly="true" type="date" formControlName="fechaRegistro" value="fechaRegistro"> </div>  </div> 
-<div class="form-group"> <label class=" control-label col-md-12">Usuario</label>  
+<!-- <div class="form-group"> <label class=" control-label col-md-12">Usuario</label>  
     <div class="col-12"> <input class="form-control" type="text" formControlName="usuarioRegistro" readonly="true"> </div>  </div> 
 <div class="form-group"> <label class=" control-label col-md-12">Fecha Modificacion</label>  
     <div class="col-12"> 
@@ -34,11 +34,11 @@
         <input [value]="rol.fechaModificacion | date:'yyyy-MM-dd' : 'UTC'"  class="form-control" type="date" formControlName="fechaModificacion" id="fechaModificacion" > </div>  
 
 
-</div> 
-<div class="form-group"> <label class=" control-label col-md-12">Usuario Modificacion</label>  
-    <div class="col-12" > <input class="form-control" type="text" formControlName="usuarioModificacion"> </div>   </div>   
+</div>  -->
+<!-- <div class="form-group"> <label class=" control-label col-md-12">Usuario Modificacion</label>  
+    <div class="col-12" > <input class="form-control" type="text" formControlName="usuarioModificacion"> </div>   </div>    -->
     <br>
-    <div class="form-group">
+    <!-- <div class="form-group">
         <label style="width:150px ;">Estado de Registro</label>
         <label style="width:50px ;">
             <input    type="radio" name="estado" formControlName="estado" ng-reflect-value="true"   [value]="true" />Si
@@ -46,7 +46,7 @@
         <label>
             <input   type="radio" name="estado" formControlName="estado" [value]="false" />No
         </label>
-    </div>
+    </div> -->
     
     </div>
 </div>
